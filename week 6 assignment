@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Concepts Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JavaScript Concepts Demo</h1>
+        </header>
+
+        <section class="interactive-section">
+            <h2>Event Listeners</h2>
+            <div class="event-box" id="eventBox">
+                Hover over me or click!
+            </div>
+            <p id="eventLog">Event log will appear here...</p>
+        </section>
+
+        <section class="form-section">
+            <h2>Form Validation</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" required>
+                    <span class="error" id="nameError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                    <span class="error" id="emailError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required minlength="8">
+                    <span class="error" id="passwordError"></span>
+                </div>
+                
+                <button type="submit" class="btn">Register</button>
+            </form>
+            <div id="formSuccess" class="success-message"></div>
+        </section>
+
+        <section class="interactive-elements">
+            <h2>Interactive Elements</h2>
+            <div class="counter-container">
+                <button id="decrementBtn" class="btn">-</button>
+                <span id="counterValue">0</span>
+                <button id="incrementBtn" class="btn">+</button>
+            </div>
+            
+            <div class="toggle-container">
+                <button id="toggleBtn" class="btn">Toggle Content</button>
+                <div id="toggleContent" class="hidden-content">
+                    This content can be toggled! JavaScript makes web pages interactive.
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+/* Event Listeners Section */
+.event-box {
+    padding: 30px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.event-box:hover {
+    background-color: #2980b9;
+    transform: scale(1.02);
+}
+
+#eventLog {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #3498db;
+    font-family: monospace;
+}
+
+/* Form Validation Section */
+.form-section {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+.success-message {
+    padding: 10px;
+    background-color: #2ecc71;
+    color: white;
+    border-radius: 4px;
+    margin-top: 15px;
+    text-align: center;
+    display: none;
+}
+
+/* Interactive Elements Section */
+.counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+#counterValue {
+    font-size: 24px;
+    min-width: 50px;
+    text-align: center;
+}
+
+.toggle-container {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.hidden-content {
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: none;
+}
+
+/* Buttons */
+.btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+/* Active states for counter buttons */
+#incrementBtn:active, #decrementBtn:active {
+    transform: scale(0.95);
+}
+
+
+// Event Listeners Demonstration
+const eventBox = document.getElementById('eventBox');
+const eventLog = document.getElementById('eventLog');
+
+// Mouse enter event
+eventBox.addEventListener('mouseenter', () => {
+    eventLog.textContent = 'Mouse entered the box!';
+    eventBox.style.backgroundColor = '#2ecc71';
+});
+
+// Mouse leave event
+eventBox.addEventListener('mouseleave', () => {
+    eventLog.textContent = 'Mouse left the box!';
+    eventBox.style.backgroundColor = '#3498db';
+});
+
+// Click event
+eventBox.addEventListener('click', () => {
+    eventLog.textContent = 'Box was clicked!';
+    eventBox.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        eventBox.style.transform = 'scale(1)';
+    }, 200);
+});
+
+// Double click event
+eventBox.addEventListener('dblclick', () => {
+    eventLog.textContent = 'Box was double clicked!';
+    eventBox.style.backgroundColor = '#9b59b6';
+});
+
+// Form Validation
+const registrationForm = document.getElementById('registrationForm');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const formSuccess = document.getElementById('formSuccess');
+
+registrationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let isValid = true;
+
+    // Name validation
+    if (nameInput.value.trim() === '') {
+        document.getElementById('nameError').textContent = 'Name is required';
+        isValid = false;
+    } else if (nameInput.value.trim().length < 3) {
+        document.getElementById('nameError').textContent = 'Name must be at least 3 characters';
+        isValid = false;
+    } else {
+        document.getElementById('nameError').textContent = '';
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailInput.value.trim() === '') {
+        document.getElementById('emailError').textContent = 'Email is required';
+        isValid = false;
+    } else if (!emailRegex.test(emailInput.value)) {
+        document.getElementById('emailError').textContent = 'Please enter a valid email';
+        isValid = false;
+    } else {
+        document.getElementById('emailError').textContent = '';
+    }
+
+    // Password validation
+    if (passwordInput.value === '') {
+        document.getElementById('passwordError').textContent = 'Password is required';
+        isValid = false;
+    } else if (passwordInput.value.length < 8) {
+        document.getElementById('passwordError').textContent = 'Password must be at least 8 characters';
+        isValid = false;
+    } else {
+        document.getElementById('passwordError').textContent = '';
+    }
+
+    // If form is valid
+    if (isValid) {
+        formSuccess.textContent = 'Registration successful!';
+        formSuccess.style.display = 'block';
+        registrationForm.reset();
+        
+        // Hide success message after 3 seconds
+        setTimeout(() => {
+            formSuccess.style.display = 'none';
+        }, 3000);
+    }
+});
+
+// Interactive Elements
+// Counter functionality
+const counterValue = document.getElementById('counterValue');
+const incrementBtn = document.getElementById('incrementBtn');
+const decrementBtn = document.getElementById('decrementBtn');
+
+let count = 0;
+
+incrementBtn.addEventListener('click', () => {
+    count++;
+    counterValue.textContent = count;
+});
+
+decrementBtn.addEventListener('click', () => {
+    if (count > 0) {
+        count--;
+        counterValue.textContent = count;
+    }
+});
+
+// Toggle functionality
+const toggleBtn = document.getElementById('toggleBtn');
+const toggleContent = document.getElementById('toggleContent');
+
+toggleBtn.addEventListener('click', () => {
+    if (toggleContent.style.display === 'none' || toggleContent.style.display === '') {
+        toggleContent.style.display = 'block';
+        toggleBtn.textContent = 'Hide Content';
+    } else {
+        toggleContent.style.display = 'none';
+        toggleBtn.textContent = 'Show Content';
+    }
+});
+
+// Additional interactive feature: Change header color on scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.style.backgroundColor = '#2c3e50';
+        header.style.transition = 'background-color 0.3s';
+    } else {
+        header.style.backgroundColor = 'transparent';
+    }
+});
